@@ -1,0 +1,26 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="600"
+        x:Class="CalculatorQuest.CalculatorScreen"
+        Title="CalculatorScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+             <ColumnDefinition Width="Auto" /> 
+             <ColumnDefinition Width="Auto" />
+             <ColumnDefinition Width="Auto" />
+             <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+             <RowDefinition Height="Auto" />
+             <RowDefinition Height="Auto" />
+             <RowDefinition Height="Auto" />
+             <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <Label Content="Label 1" Grid.Column="0" Grid.Row="0" FontSize="16" Margin="10" /> 
+        <Label Content="Label 2" Grid.Column="1" Grid.Row="0" FontSize="16" Margin="10" /> 
+        <Label Content="Label 3" Grid.Column="0" Grid.Row="1" FontSize="16" Margin="10" />
+    </Grid> 
+</Window> 

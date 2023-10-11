@@ -1,10 +1,12 @@
+﻿using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Markup.Xaml;
 
 namespace CalculatorQuest;
 
-public partial class MainWindow : Window
+public partial class CalculatorScreen : Window
 {
-    public MainWindow()
+    public CalculatorScreen()
     {
         this.Width = 300;
         this.Height = 600;
