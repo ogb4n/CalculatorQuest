@@ -8,9 +8,11 @@ namespace CalculatorQuest;
 
 public partial class CalculatorScreen : Window
 {
-    public string CurrentInput = "";
-    public string FirstInput = "";
-    public string Operand = "";
+    private string CurrentInput = "";
+    private string FirstInput = "";
+    private string Operand = "";
+    private string ComposedOperation = "";
+
     
     public CalculatorScreen()
     {
@@ -20,12 +22,16 @@ public partial class CalculatorScreen : Window
     }
     
 
+    // Handler pour les boutons de chiffres
     private void Number_OnClick(object? sender, RoutedEventArgs e)
     {
      Button btn = (Button)sender;
      CurrentInput += btn.Content.ToString();
      NumbersBox.Content = CurrentInput;
+
     }
+    
+    // Handler pour les boutons d'operateurs
     
     private void Operator_OnClick(object? sender, RoutedEventArgs e)
     {
@@ -33,35 +39,43 @@ public partial class CalculatorScreen : Window
         FirstInput = CurrentInput;
         SavedNumber.Content = FirstInput;
         CurrentInput = "";
-        NumbersBox.Content = CurrentInput;
-        
+        NumbersBox.Content = "";
+
         if (btn == ButtonPlus)
         {
             OperatorBox.Content = "+";
+            Operand = "+";
+
         }
         else if (btn == ButtonMinus)
         {
             OperatorBox.Content = "-";
+            Operand = "-";
         }
         else if (btn == ButtonMultiply)
         {
             OperatorBox.Content = "x";
+            Operand = "x";
         }
         else if (btn == ButtonDivide)
         {
             OperatorBox.Content = "/";
+            Operand = "/";
         }
         else if (btn == ButtonModulo)
         {
             OperatorBox.Content = "%";
+            Operand = "%";
         }
         else if (btn == ButtonPlusMinus)
         {
             OperatorBox.Content = "+/-";
+            Operand = "+/-";
         }
         
     }
     
+    // Handler pour les boutons de controle
     private void Control_OnClick(object? sender, RoutedEventArgs e)
     {
         
@@ -70,7 +84,11 @@ public partial class CalculatorScreen : Window
         if (btn  == ButtonC)
         {
             CurrentInput = "";
+            Operand = "";
+            FirstInput = "";
+            ComposedOperation = "";
             NumbersBox.Content = CurrentInput;
+            SavedNumber.Content = "";
         }
         else if (btn == ButtonBack)
         {
@@ -79,6 +97,25 @@ public partial class CalculatorScreen : Window
             NumbersBox.Content = CurrentInput;
 
         }
-       
+        else if (btn == ButtonEqual)
+        {
+            ComposedOperation = FirstInput + Operand + CurrentInput;
+            var size = ComposedOperation.Length;
+            ComposedOperation = ComposedOperation.Remove(size - 1);
+            ComposedOperation = new Calc().Operator(ComposedOperation);
+            NumbersBox.Content = ComposedOperation;
+            //Console.Write(ComposedOperation);
+            SavedNumber.Content = "";
+            OperatorBox.Content = "";
+            CurrentInput = ComposedOperation;
+            Operand = "";
+            FirstInput = "";
+            ComposedOperation = "";
+        }
+        else if (btn == Button_CE)
+        {
+            NumbersBox.Content = "";
+            CurrentInput = "";
+        }
     }
 }
